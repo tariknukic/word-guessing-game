@@ -50,7 +50,7 @@ addPhraseToDisplay(phraseArray);
  function checkLetter(button) {
     const letters = document.querySelectorAll('.letter');
     const chosenLetter = button.textContent;
-    const match = null;
+    let match = null;
 
     for (let i = 0; i < letters.length ; i++) {
         const item = letters[i];
@@ -59,7 +59,6 @@ addPhraseToDisplay(phraseArray);
         if (givenLetter === chosenLetter) {
             item.classList.add('show');
             match = chosenLetter;
-            break;
         } 
     }
     return match;
@@ -96,6 +95,7 @@ qwerty.addEventListener('click', (e) => {
     if (e.target.tagName === 'BUTTON' && e.target.className !== 'chosen') {
         const chosenButton = e.target;
         chosenButton.className = 'chosen';
+        chosenButton.disabled = true;
         const letterFound = checkLetter(chosenButton);
         if (letterFound === null) {
             missed += 1;
